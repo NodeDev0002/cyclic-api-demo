@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const express = require('express');
+require('dotenv').config();
+
 
 const app = express();
 app.use(express.json());
 
-var mongoUrl = "mongodb+srv://testrtemp22:dXCOfJxwgAZBsN3U@testdababase.ljo4iq2.mongodb.net/user-management-system";
-mongoose.connect(mongoUrl).then(() => { 
+mongoose.connect(process.env.MONGO_URI).then(() => { 
     console.log('Database connected successfully.. ');
 });
 
