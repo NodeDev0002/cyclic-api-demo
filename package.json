@@ -4,8 +4,8 @@
   "description": "A Demo Project for authentication and structure ",
   "main": "app.js",
   "scripts": {
-    "test": "npx nodemon app.js",
-    "start": "npx nodemon app.js"
+    "start": "npx node app.js",
+    "dev": "npx nodemon app.js"
   },
   "author": "",
   "license": "ISC",
