@@ -10,13 +10,13 @@ function authenticate(req, res, next) {
     console.log(` headers is >>>> ${req.headers['authorization']}`);
     console.log(` email is >>>> ${req.body.email}`);
     if (!authHeader) {
-        return res.status(401).json({"message" : 'Unauthorized'});
+        return giveResponse(req, res, false, 401, "Unauthorized", {});
     }
     const token = authHeader.split(' ')[1];
     // Verify the token
     jwt.verify(token, jwtsecretKey, (err, decoded) => {
         if (err) {
-            return res.status(401).json({ "message": 'token is not valid' });
+            return giveResponse(req, res, false, 401, 'token is not valid', {});
         }
         console.log(` token is ${token}`);
         console.log(` error is ${err}`);
