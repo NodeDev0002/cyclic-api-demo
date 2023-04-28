@@ -1,10 +1,11 @@
 const connection = require('./connnection/connection.js');
 const login = require("./modules/authentication/apis/login.js")
+const giveResponse = require("./utils/giveResponse");
 
 
 connection.app.get("/", (req, res) => { 
     console.log(" API Running"); 
-    res.send('api running >> ');
+    return giveResponse(req, res, true, 200, "!  ..........API IS WORKING FINE...... !", {});
 });
 
 /// Authentication Routes.. 
