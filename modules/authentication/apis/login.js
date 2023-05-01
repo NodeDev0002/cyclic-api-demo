@@ -29,10 +29,6 @@ function authenticate(req, res, next) {
 }
 
 
-
-const fs = require('fs');
-// const os = require('os');
-
 async function login(req, res, next) {   
     const { email, password } = req.body; 
     try {
