@@ -1,6 +1,6 @@
 const connection = require('./connnection/connection.js');
 const login = require("./modules/authentication/apis/login.js")
-const comments = require("./modules/comment/apis/comment")
+const commentController = require("./modules/comment/apis/comment")
 const postController = require("./modules/post/apis/post_controller")
 const giveResponse = require("./utils/giveResponse");
 
@@ -12,14 +12,13 @@ connection.app.get("/", (req, res) => {
 
 /// Authentication Routes.. 
 connection.app.post("/login", login.login,);
-
 connection.app.post("/createAccount", login.createAcc,);
 connection.app.post("/updateProfile", login.authenticate, login.updateProfile,);
 
-
-connection.app.get("/getPosts", login.authenticate, postController.getPosts,);
-connection.app.post("/addPost", login.authenticate, postController.addPost,);
-connection.app.get("/likePost", login.authenticate, postController.likePost,);
-connection.app.post("/addComment", login.authenticate , comments.addComment,);
-connection.app.post("/addSubComment", login.authenticate, comments.addSubComment,);
+///Post Manage Routes..
+connection.app.get("/getPosts", postController.getPosts,);
+connection.app.post("/addPost", postController.addPost,);
+connection.app.get("/likePost", postController.likePost,);
+connection.app.post("/addComment", commentController.addComment,);
+connection.app.post("/addSubComment", commentController.addSubComment,);
 

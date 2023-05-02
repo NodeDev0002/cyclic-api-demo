@@ -6,9 +6,6 @@ const SubCommentModel = require('../models/sub_comment_model');
 const giveResponse = require('../../../utils/giveResponse');
 
 
-
-
-
 async function addComment(req, res, next) {
     try {
         const { commentTxt, postId , commentTime, } = req.body;
@@ -27,7 +24,6 @@ async function addComment(req, res, next) {
     } catch (err) {
         console.log(err);
         return giveResponse(req, res, false, 400, "Something went wrong", {});
-
     }
 }
 

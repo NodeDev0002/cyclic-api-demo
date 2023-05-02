@@ -129,4 +129,5 @@ async function likePost(req,res, next ) {
 
 }
 
+
 module.exports = { addPost, getPosts, likePost }; 

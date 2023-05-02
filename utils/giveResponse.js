@@ -3,7 +3,6 @@
 
 giveResponse = async (req, res, status, statusCode, message, model) => {
     console.log("giveResponse :: %s", message);
-    console.log(` Request IP Address is ${req.socket.remoteAddress}`);
     var StringMSG = status == true ? "\n 🟢 " + Date().toLocaleString() + " || " + message + " || " + req.url + " || " : "\n 🔴 " + Date().toLocaleString() + " || " + message + " || " + req.url + " || ";
     console.log("giveResponse :: %s", StringMSG);
     // fs.writeFile('api-log.csv', StringMSG, { flag: 'a' }, (err) => {
