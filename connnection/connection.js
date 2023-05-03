@@ -14,7 +14,9 @@ const checkLocation = async (req, res, next) => {
     const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress; 
     const geo = await geoip.lookup(clientIP); 
     console.log(`middle ware is working... ${clientIP}`);
-    // console.log(`IP Location is ${geo.city}`);
+    if (geo && geo.country) { 
+        console.log(`API is calling from ${geo.city}, ${geo.region}, ${geo.country}`);
+    }
     if (geo && geo.country != 'IN') {
         return giveResponse(req, res, false, 400, "Service is not available in your country..", {});
     }
