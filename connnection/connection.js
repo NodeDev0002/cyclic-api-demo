@@ -15,7 +15,8 @@ const checkLocation = async (req, res, next) => {
     const geo = await geoip.lookup(clientIP); 
     console.log(`middle ware is working... ${clientIP}`);
     if (geo && geo.country) { 
-        console.log(`API is calling from ${geo.city}, ${geo.region}, ${geo.country}`);
+        console.log(`API is calling from Location:-  ${geo.area}, ${geo.city}, ${geo.region}, ${geo.country}`);
+        console.log(`API is calling from Lat-Lng:-  ${geo.ll}`);
     }
     if (geo && geo.country != 'IN') {
         return giveResponse(req, res, false, 400, "Service is not available in your country..", {});
