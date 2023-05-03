@@ -30,6 +30,7 @@ async function addComment(req, res, next) {
 async function addSubComment(req, res, next) {
     try {
         const { subCommentTxt, commentId, subCommentTime, } = req.body;
+
         var subComment = await SubCommentModel.create(
             {
                 userId: req.userId,

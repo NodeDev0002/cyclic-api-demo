@@ -3,7 +3,6 @@ const express = require('express');
 require('dotenv').config();
 const giveResponse = require("../utils/giveResponse");
 const geoip = require('geoip-lite');
-const login = require("../modules/authentication/apis/login.js")
 
 
 
@@ -23,7 +22,7 @@ const checkLocation = async (req, res, next) => {
 };
 
 app.use(checkLocation);
-app.use(login.authenticate);
+
 
 mongoose.connect(process.env.MONGO_URI).then(() => { 
     console.log('Database connected successfully.. ');

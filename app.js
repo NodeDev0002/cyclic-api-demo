@@ -16,9 +16,9 @@ connection.app.post("/createAccount", login.createAcc,);
 connection.app.post("/updateProfile", login.authenticate, login.updateProfile,);
 
 ///Post Manage Routes..
-connection.app.get("/getPosts", postController.getPosts,);
-connection.app.post("/addPost", postController.addPost,);
-connection.app.get("/likePost", postController.likePost,);
-connection.app.post("/addComment", commentController.addComment,);
-connection.app.post("/addSubComment", commentController.addSubComment,);
+connection.app.get("/getPosts", login.authenticate, postController.getPosts,);
+connection.app.post("/addPost", login.authenticate, postController.addPost,);
+connection.app.get("/likePost", login.authenticate, postController.likePost,);
+connection.app.post("/addComment", login.authenticate, commentController.addComment,);
+connection.app.post("/addSubComment", login.authenticate, commentController.addSubComment,);
 
