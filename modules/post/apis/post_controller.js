@@ -79,7 +79,7 @@ async function getPosts(req, res, next) {
             element.users = user;
             var isLike = await element.likeUserId.includes(req.userId); 
             var posts = await {
-                _id : element._id, 
+                _id : element._id,
                 postLink: element.postLink,
                 postLike: element.postLike,
                 postLiked: isLike, 
@@ -105,6 +105,45 @@ async function getPosts(req, res, next) {
     }
 };
 
+const pipeline = [
+    {
+        '$lookup': {
+            'from': 'users',
+            'localField': 'postOwnerId',
+            'foreignField': '_id',
+            'as': 'users'
+        }
+    }, {
+        '$unwind': {
+            'path': '$users',
+            'includeArrayIndex': 'string',
+            'preserveNullAndEmptyArrays': true
+        }
+    }, {
+        '$project': {
+            '_id': 1,
+            'postLike': 1,
+            'postCommentCount': 1,
+            'likeUserId': 1,
+            'users.username': 1,
+            'users.email': 1,
+            'users.profilepic': 1
+        }
+    }
+];
+
+
+async function getAggregate(req, res, next) {
+    try {
+        var result = await PostModel.aggregate(pipeline);
+        console.log(`=====>>>>>> result ${result}`);
+        return giveResponse(req, res, true, 200, "Something good", result);
+        // return giveResponse(req, res, false, 400, "So444444t wrong", results);
+    } catch (err) { 
+        console.log(err);
+        return giveResponse(req, res, false, 400, "Something went wrong", {});
+    }
+ }
 
 async function likePost(req,res, next ) {
     try {
@@ -130,4 +169,4 @@ async function likePost(req,res, next ) {
 }
 
 
-module.exports = { addPost, getPosts, likePost }; 
+module.exports = { addPost, getPosts, likePost, getAggregate }; 

@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 
 const postSchema = mongoose.Schema({
     postLink: String, 
-    postOwnerId : String, 
+    postOwnerId: {
+        type: String, 
+        ref: "users"
+    }, 
     postStatus: String, 
     postTime: Date, 
     likeUserId : Array, 
